@@ -1,0 +1,11 @@
+# Generated index and local artifacts
+.cache/
+__pycache__/
+*.py[cod]
+.DS_Store
+.ipynb_checkpoints/
+*-preview.jpg
+preview.jpg
+
+# GitHub Pages build output
+dist/

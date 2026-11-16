@@ -1,0 +1,574 @@
+:root{--ink:#282828;--muted:#727272;--line:#e7e7e7;--accent:#171717;--selection-color:#171717;--selection-width:2px;--paper:#fafafa}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:13px}
+button,input,select{font:inherit}
+button{cursor:pointer}
+button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #737373;outline-offset:3px}
+header{height:91px;display:flex;align-items:center;justify-content:space-between;padding:0 29px;border-bottom:1px solid var(--line);background:#ffffff}
+.brand{display:flex;align-items:center;gap:13px}
+
+h1{font-size:23px;letter-spacing:-.8px;margin:4px 0 0;font-weight:650}
+h1 span{font-weight:400;color:#727272;margin-left:4px}
+
+.divider{margin:0 8px;color:#c6c6c6}
+main{display:grid;grid-template-columns:242px minmax(360px,1fr) 356px;height:calc(100vh - 91px);min-height:650px}
+.filters{padding:25px 20px;overflow:auto;background:#ffffff;border-right:1px solid var(--line)}
+h2{font-size:14px;font-weight:650;margin:0}
+h3{font-size:12px;font-weight:600;margin:0}
+.section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:25px}
+
+.search-label{display:block;font-size:10px;font-weight:600;color:#727272;margin-bottom:8px}
+input[type=search]{width:100%;background:white;border:1px solid #e7e7e7;border-radius:6px;padding:10px 11px;color:var(--ink);font-size:11px}
+input::placeholder{color:#9d9d9d}
+.filter-heading{display:flex;justify-content:space-between;align-items:center;margin:25px 0 12px}
+.text-button{border:0;background:none;padding:2px;color:var(--accent);font-size:11px}
+.filter-heading span{color:#c9c9c9}
+.biome-row{display:flex;gap:8px;align-items:center;padding:5px 0;cursor:pointer;font-size:11px}
+.biome-row input{accent-color:var(--accent);margin:0;width:12px;height:12px}
+.swatch{width:8px;height:8px;border-radius:50%;display:inline-block;flex-shrink:0}
+.biome-count{margin-left:auto;color:#939393;font-variant-numeric:tabular-nums}
+.fine{font-size:10px;line-height:1.6}
+.muted{color:var(--muted)}
+select{background:#ffffff;border:1px solid var(--line);border-radius:5px;color:var(--ink);padding:8px;max-width:100%}
+footer{font-size:9px;line-height:1.8;color:#a1a1a1;border-top:1px solid var(--line);padding-top:15px;margin-top:20px}
+footer code{font-size:9px}
+.map-column{min-width:0;display:flex;flex-direction:column;padding:25px 22px 12px}
+
+.outline-button{white-space:nowrap;border:1px solid #d4d4d4;border-radius:5px;background:transparent;padding:8px 10px;color:#727272;font-size:10px}
+.map-wrap{position:relative;flex:1;min-height:470px;border:1px solid #dcdcdc;border-radius:10px;overflow:hidden}
+#map{width:100%;height:100%;background:#f5f5f5}
+
+#map-empty{position:absolute;top:45%;left:15%;right:15%;text-align:center;z-index:600;background:#ffffff;padding:20px;border-radius:8px}
+.profile-panel{padding:25px 23px;background:#ffffff;border-left:1px solid var(--line);overflow:auto}
+.profile-panel .section-title{margin-bottom:19px}
+.tabs{display:flex;padding:4px;background:#f4f4f4;border-radius:7px;gap:3px}
+.tabs button{flex:1;padding:9px 4px;background:transparent;border:0;color:#727272;font-size:11px;border-radius:5px}
+.tabs button.active{background:#ffffff;color:var(--accent);font-weight:600;box-shadow:0 1px 5px #31313110}
+#empty-profile{padding-top:90px;text-align:center}
+.empty-icon{font-size:44px;color:#aeaeae;margin-bottom:18px}
+#empty-profile h3{font-family:Georgia,serif;font-size:20px;font-weight:400}
+#empty-profile p{font-size:11px;line-height:1.9;color:var(--muted);padding:0 12px}
+.empty-steps{display:flex;flex-direction:column;gap:17px;text-align:left;border-top:1px solid var(--line);margin-top:32px;padding:23px 25px;font-size:10px;color:#929292}
+.selected-title{display:flex;align-items:center;justify-content:space-between;margin-top:23px}
+.badge{font-size:9px;font-weight:700;border-radius:4px;padding:4px 8px;background:#f2f2f2}
+#selected-id{font-size:19px;letter-spacing:-.5px;margin-top:12px;overflow-wrap:anywhere}
+#selected-location{font-size:11px;color:var(--muted);margin:7px 0 19px}
+#site-picker{width:100%;font-size:11px}
+.profile-metrics{display:grid;grid-template-columns:1fr 1fr;margin:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0}
+.profile-metrics>div+div{border-left:1px solid var(--line);padding-left:22px}
+.profile-metrics span{font-size:9px;color:var(--muted);display:block}
+.profile-metrics strong{font-size:24px;font-weight:500;display:block;margin:6px 0 2px;font-variant-numeric:tabular-nums}
+.profile-metrics small{font-size:9px;color:#a1a1a1}
+details{font-size:10px;margin-bottom:25px}
+summary{cursor:pointer;color:#727272}
+dl{display:grid;grid-template-columns:65px 1fr;gap:7px;font-size:9px}
+dt{color:var(--muted)}
+dd{margin:0;overflow-wrap:anywhere}
+.chart-controls{display:flex;justify-content:space-between;align-items:center;margin-bottom:11px;font-size:11px;font-weight:600}
+.plot-options{display:flex;align-items:center;justify-content:space-between;gap:5px;margin-top:10px;color:#949494;font-size:8px}
+.plot-options select{font-size:9px;padding:5px}
+.bar-row{margin:14px 0}
+.bar-label{display:flex;align-items:baseline;justify-content:space-between;gap:10px;font-size:10px;margin-bottom:5px}
+.bar-name{overflow-wrap:anywhere;line-height:1.4}
+.bar-value{flex-shrink:0;font-variant-numeric:tabular-nums;font-size:9px;color:#727272}
+.bar-track{height:6px;background:#f4f4f4;border-radius:2px;overflow:hidden}
+.bar-fill{height:100%;min-width:1px;border-radius:2px;opacity:.8}
+.site-icon{background:transparent;border:0;border-radius:50%}
+.site-symbol{border:2px solid white;border-radius:50%;width:100%;height:100%;box-shadow:0 1px 5px #45454555;display:flex;align-items:center;justify-content:center;color:white;font-size:9px;font-weight:650;text-shadow:0 1px 3px #20202088}
+.site-symbol.selected{outline:none}
+
+.leaflet-tooltip{font-family:inherit}
+.sample-tooltip{padding:10px 12px;line-height:1.7;font-size:11px}
+.sample-tooltip strong{font-size:12px}
+.sample-tooltip small{color:#7c7c7c}
+.leaflet-control-attribution{font-size:8px!important;background:#ffffffc9!important}
+.leaflet-control-zoom{border:1px solid #d4d4d4!important;box-shadow:none!important}
+.leaflet-control-zoom a{color:#6d6d6d!important}
+.leaflet-bottom.leaflet-left{bottom:15px;left:8px}
+[hidden]{display:none!important}
+@media(min-width:1700px){main{grid-template-columns:265px minmax(360px,1fr) 410px}
+.profile-panel{padding:28px}
+.filters{padding:28px 24px}
+}
+@media(max-width:1150px){main{grid-template-columns:210px minmax(300px,1fr) 305px}
+.filters{padding:22px 14px}
+.profile-panel{padding:22px 16px}
+.map-column{padding:22px 14px 12px}
+
+}
+@media(max-width:900px){header{height:80px;padding:0 18px}
+
+main{grid-template-columns:210px 1fr;height:auto;min-height:0}
+.filters{grid-row:1 / 3}
+.map-column{height:650px}
+.profile-panel{grid-column:2;border-top:1px solid var(--line);overflow:visible}
+#empty-profile{padding:25px 0}
+.profile-panel .empty-steps{display:none}
+}
+@media(max-width:600px){h1{font-size:20px}
+main{display:flex;flex-direction:column}
+.filters{order:2;border-top:1px solid var(--line);max-height:550px}
+.map-column{order:1;height:570px;flex:none;padding:18px 12px 10px}
+.profile-panel{order:3}
+
+.map-wrap{min-height:430px}
+
+#biome-filters{display:grid;grid-template-columns:minmax(0,1fr);gap:4px}
+.filters .section-title{margin-bottom:12px}
+}
+
+/* Edge-to-edge map with a compact persistent filter card. */
+html,body{height:100%;overflow:hidden}
+
+header{position:absolute;top:18px;left:18px;z-index:1040;height:38px;padding:0;background:none;border:0;pointer-events:none}
+
+.brand{gap:8px}
+
+h1{font-size:17px;margin:0;letter-spacing:-.5px}
+h1 span{margin-left:2px}
+
+/* Fill the largest viewport so Safari cannot reveal the ranking when its toolbar retracts.
+   Unlike dvh, this height stays stable while scrolling. */
+main{position:relative;display:block;height:100vh;height:100lvh;min-height:0;overflow:hidden}
+
+.map-column{position:absolute;inset:0;display:block;height:auto;padding:0;min-width:0}
+
+.map-wrap{position:absolute;inset:0;min-height:0;border:0;border-radius:0;overflow:hidden}
+
+#map{height:100%;width:100%}
+
+.filters,.profile-panel{position:absolute;z-index:1050;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;border:1px solid #e7e7e7;border-radius:10px;box-shadow:0 5px 22px #3f3f3f16;background:#ffffff;padding:18px;max-height:none;grid-column:auto;grid-row:auto}
+
+.filters{left:18px;top:68px;bottom:18px;width:240px;max-height:none}
+
+.profile-panel{right:18px;top:18px;bottom:18px;width:240px;max-height:none;z-index:1100;padding:18px}
+
+.section-title{align-items:center;margin-bottom:16px}
+.filters h2{font-size:14px}
+
+.filters .search-label{font-size:9px;margin-bottom:6px}
+.filters input[type=search]{font-size:10px;padding:8px 9px;background:#fafafa}
+
+.filter-heading{margin:8px 0 10px;justify-content:flex-end}
+.filter-heading h3{font-size:11px}
+.filter-heading .text-button{font-size:10px}
+
+#biome-filters{display:grid;grid-template-columns:minmax(0,1fr);gap:5px}
+
+.filters .biome-row{display:grid;grid-template-columns:10px 6px minmax(0,1fr) max-content;align-items:center;margin:0;padding:6px 7px;gap:6px;border:1px solid #e7e7e7;border-radius:5px;font-size:10px;line-height:1.5;background:#fafafa;min-width:0}
+.biome-name{min-width:0;white-space:normal;overflow-wrap:anywhere}
+.filters .biome-count{margin-left:0;text-align:right;white-space:nowrap}
+
+.filters .biome-row:has(input:not(:checked)){background:#ffffff;color:#a1a1a1;border-color:#f4f4f4}
+
+.filters .biome-row:has(input:not(:checked)) .swatch{opacity:.35}
+
+.filters .biome-row input{width:10px;height:10px;flex-shrink:0}
+.filters .swatch{width:6px;height:6px}
+.biome-count{font-size:9px}
+
+.filter-summary{border-top:1px solid var(--line);padding-top:14px;margin-top:17px}
+
+.filter-stats{display:flex;gap:0;padding:0 0 14px}
+
+.filter-stats>div{flex:1;text-align:center}
+.filter-stats>div+div{border-left:1px solid var(--line)}
+
+.filter-stats strong{font-size:18px;font-weight:500;display:block}
+.filter-stats span{font-size:8px;color:var(--muted)}
+
+.filters .fine{font-size:9px;line-height:1.5;margin:12px 0 0}
+.filters footer{margin-top:12px;padding-top:9px;font-size:8px}
+
+.panel-close{display:grid;place-items:center;width:28px;height:28px;flex-shrink:0;border:0;border-radius:5px;background:transparent;color:#727272;font-size:23px;line-height:1}
+
+.panel-close:hover{background:#f2f2f2;color:var(--accent)}
+
+.leaflet-control-scale{margin-bottom:23px!important;margin-right:18px!important}
+
+.leaflet-control-attribution{max-width:calc(100vw - 120px);text-align:right}
+
+#map-empty{left:50%;right:auto;top:45%;transform:translateX(-50%);width:max-content;max-width:calc(100% - 28px);padding:10px 14px;border:1px solid var(--line);box-shadow:0 5px 22px #3f3f3f16;font-size:11px;line-height:1.5;color:var(--muted)}
+
+@media(max-width:900px){.profile-panel{max-width:calc(100% - 24px)}
+.profile-panel .empty-steps{display:flex}
+}
+
+@media(max-width:600px){
+  header{top:12px;left:12px;height:32px;padding:0}
+.brand{gap:6px}
+
+h1{font-size:14px}
+
+  .filters{top:54px;bottom:12px;left:12px;width:calc(50% - 18px);max-width:none;max-height:none;padding:10px}
+
+  .filters .section-title{margin-bottom:12px}
+
+.filters .biome-row{font-size:9px;padding:5px;gap:5px}
+
+  #biome-filters{gap:4px}
+.biome-count{font-size:8px}
+
+  /* Short toolbar labels leave room for the top-aligned profile panel. */
+  .profile-panel{top:12px;right:12px;bottom:12px;width:calc(50% - 18px);max-height:none;padding:10px}
+
+  .map-column{height:auto;padding:0}
+.map-wrap{min-height:0}
+
+}
+
+#map path:focus{outline:none}
+
+#map .district-boundary:focus-visible{outline:none;stroke:var(--selection-color);stroke-width:var(--selection-width)}
+
+/* Keep the map large; the comparison table lives immediately below it. */
+html{height:auto;overflow-x:hidden;overflow-y:auto;scroll-behavior:auto}
+
+body{height:auto;min-height:100%;overflow:visible}
+
+.comparison-controls{margin-top:17px;border-top:1px solid var(--line);padding-top:14px}
+
+.comparison-controls h3{margin-bottom:12px}
+
+.comparison-controls .search-label{margin-top:10px}
+
+.comparison-controls select{display:block;width:100%;font-size:10px;padding:7px 6px}
+
+#comparison-feature{margin-top:6px}
+
+.comparison-map-key{position:absolute;bottom:27px;left:50%;transform:translateX(-50%);z-index:650;background:#fffffff0;border:1px solid #e7e7e7;padding:12px 16px;border-radius:7px;max-width:calc(100% - 40px);text-align:center;pointer-events:none}
+
+.comparison-map-key strong{display:block;font-size:12px;overflow-wrap:anywhere}
+
+.comparison-map-key span{display:block;font-size:11px;line-height:1.6;color:#727272;margin-top:4px}
+
+.ranking-section{padding:18px;background:#fafafa;border-top:1px solid #e7e7e7;scroll-margin-top:0}
+
+.ranking-heading{display:flex;justify-content:space-between;gap:20px;align-items:center}
+
+.ranking-heading h2{font-size:14px;margin:0;font-weight:650;letter-spacing:0;line-height:1.35}
+
+.ranking-heading p{font-size:9px;line-height:1.5;margin:6px 0 0;color:var(--muted)}
+
+.ranking-actions{display:flex;gap:18px;align-items:center;flex-shrink:0}
+
+.ranking-actions a{color:var(--ink);font-size:10px;text-decoration:none}
+
+.ranking-actions button{background:#fafafa;font-size:10px}
+
+button:disabled{opacity:.45;cursor:default}
+
+.ranking-measure{font-size:11px;color:var(--ink);font-weight:600;line-height:17px;margin:10px 0;overflow-wrap:anywhere}
+
+.ranking-table-wrap{max-height:560px;overflow:auto;border:1px solid #e7e7e7;border-radius:8px;background:white}
+
+#ranking-table{border-collapse:separate;border-spacing:0;width:100%;font-family:inherit;font-size:10px;line-height:1.5;color:var(--ink);white-space:nowrap}
+
+#ranking-table th{position:sticky;top:0;z-index:2;background:#f4f4f4;border-bottom:1px solid #e7e7e7;text-align:left;font-weight:600}
+
+#ranking-table th button{padding:9px 10px;border:0;background:none;color:var(--muted);font-size:9px;font-weight:600;white-space:nowrap}
+
+#ranking-table td{padding:9px 10px;border-bottom:1px solid #f4f4f4;max-width:320px;overflow:hidden;text-overflow:ellipsis;font-variant-numeric:tabular-nums}
+
+#ranking-table tbody tr:hover{background:#fafafa}
+#ranking-table tbody tr.selected{background:#f2f2f2}
+
+#ranking-table .sample-link{background:none;border:0;color:var(--ink);font-size:10px;font-weight:600;padding:0;text-align:left}
+
+#ranking-table .sample-link:hover{text-decoration:underline}
+
+#ranking-table .abundance-cell{min-width:175px}
+
+.abundance-cell strong{font-size:10px;font-weight:500}
+
+.table-bar{height:4px;background:#f4f4f4;border-radius:2px;margin-top:6px;width:115px;overflow:hidden}
+
+.table-bar i{height:100%;display:block;border-radius:2px}
+
+#ranking-table .table-message{padding:40px 20px;text-align:center;color:var(--muted);white-space:normal}
+
+.ranking-pagination{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:16px;font-size:10px;color:#727272}
+
+.ranking-pagination>div{display:flex;align-items:center;gap:9px}
+.ranking-pagination select{font-size:10px;padding:6px}
+
+.ranking-pagination button{font-size:10px;padding:7px 10px}
+
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+@media(max-width:700px){
+  .ranking-section{padding:13px}
+
+  .ranking-heading{align-items:flex-start;flex-direction:column;gap:14px}
+
+  .ranking-actions{width:100%;justify-content:space-between}
+
+  .ranking-pagination{align-items:flex-start;flex-direction:column}
+
+  .ranking-table-wrap{max-height:460px}
+
+  .comparison-map-key{bottom:30px;padding:10px 14px;left:50%;right:auto;transform:translateX(-50%);width:max-content;max-width:calc(100% - 28px)}
+
+}
+
+.site-symbol{box-shadow:0 2px 6px #3f3f3f26;border-color:#ffffff;text-shadow:0 1px 2px #17171755}
+
+/* A quiet map first; data controls appear only when exploration starts. */
+body.landing{height:100vh;height:100svh;overflow:hidden}
+
+/* Keep the front-page controls within the screen when browser toolbars are visible. */
+body.landing main{height:100vh;height:100svh}
+
+body.landing .explorer-toolbar,body.landing .filters,body.landing .profile-panel,
+body.landing .ranking-section,body.landing .comparison-map-key,body.landing .leaflet-control-scale,
+body.landing #map-empty{display:none!important}
+
+body.landing #map .district-boundary{pointer-events:none}
+
+body.landing #map .leaflet-tooltip{display:none}
+
+body.landing .leaflet-control-attribution{background:transparent!important;color:#929292}
+
+body.landing .leaflet-control-attribution a{color:#7e7e7e}
+
+.landing-filters{position:absolute;z-index:1000;top:50%;left:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:24px;width:min(620px,calc(100% - 40px));padding:17px 18px 17px 26px;border:2px solid var(--selection-color);border-radius:20px;box-shadow:0 12px 45px #3f3f3f0d,0 2px 7px #3f3f3f05}
+
+body:not(.landing) .landing-filters{display:none}
+
+.landing-field{min-width:0;flex:1}
+
+.landing-field label{display:block;font-size:10px;line-height:1.5;font-weight:650;letter-spacing:.08em;text-transform:uppercase;color:#868686;margin-bottom:4px}
+
+.landing-field select{width:100%;border:0;padding:3px 20px 3px 0;background:transparent;border-radius:3px;font-size:14px;line-height:1.6;color:#323232;cursor:pointer}
+
+.landing-field select:focus-visible{outline-width:2px;outline-color:var(--selection-color)}
+
+.landing-field select:disabled{color:#a1a1a1;cursor:default}
+
+.landing-divider{height:34px;width:1px;flex-shrink:0;background:#e9e9e9}
+
+.explore-button{display:grid;place-items:center;width:46px;height:46px;aspect-ratio:1;flex:0 0 auto;padding:0;border:0;border-radius:14px;background:#171717;color:white;line-height:1;transition:background .2s}
+
+.explore-button svg{display:block;width:22px;height:22px}
+
+.explore-button:hover{background:#000000}
+
+.landing-status{position:absolute;top:100%;left:0;width:100%;text-align:center;font-size:11px;color:#727272;line-height:1.6;padding:0 10px}
+
+.ambient-icon{background:none;border:0;pointer-events:none}
+
+.ambient-dot{display:block;width:12px;height:12px;border:2px solid #ffffff;border-radius:50%;animation:sample-appearance var(--point-duration) ease-in-out both}
+
+.ambient-static{animation:none;opacity:.75}
+
+@keyframes sample-appearance{0%{opacity:0}
+20%,65%{opacity:.85}
+100%{opacity:0}
+}
+
+header{gap:10px;pointer-events:auto}
+
+header .brand{margin-right:6px}
+
+.overview-button{border:1px solid #e7e7e7;background:#ffffffed;color:#535353;padding:8px 11px;border-radius:8px;font-size:11px}
+
+.overview-button:hover{background:#f2f2f2;color:#171717}
+
+/* One edge-aligned highlight shared by buttons, location markers, and districts. */
+.overview-button[aria-expanded="true"]{border-color:transparent;color:var(--selection-color);outline:var(--selection-width) solid var(--selection-color);outline-offset:calc(-1 * var(--selection-width));box-shadow:none}
+
+body.filters-collapsed .filters{display:none}
+
+@media(max-width:600px){
+  .landing-filters{gap:12px;width:calc(100% - 28px);padding:15px 12px 15px 18px;border-radius:17px}
+
+  .landing-field select{font-size:12px;padding-right:8px}
+
+  .landing-field label{font-size:9px}
+
+  .explore-button{width:44px;height:44px;border-radius:11px}
+
+  header{gap:4px}
+.overview-button{font-size:10px;padding:7px 7px}
+
+  header .brand{margin-right:0}
+header h1{font-size:12px}
+
+}
+
+@media(prefers-reduced-motion:reduce){
+  .ambient-dot,body:not(.landing) .filters,body:not(.landing) .ranking-section{animation:none}
+
+  .explore-button{transition:none}
+
+}
+
+/* Both views use the diameter calculated from the same full-dataset scale. */
+.ambient-dot,.site-symbol{width:100%;height:100%;border:2px solid #fff;box-shadow:0 1px 5px #17171724}
+
+.site-icon.district-highlight .site-symbol,.site-symbol.selected{border-color:var(--selection-color);border-width:var(--selection-width)}
+
+/* Touch browsers retain :hover after a tap; only actual selection should highlight them. */
+@media(min-width:601px) and (hover:hover) and (pointer:fine){
+  .site-icon:hover .site-symbol{border-color:var(--selection-color);border-width:var(--selection-width)}
+}
+
+html{scrollbar-gutter:stable}
+
+/* One centered card with a simple title above the filters. */
+.landing-filters{display:grid;grid-template-rows:repeat(2,1fr);align-items:stretch;gap:0;padding:0 22px}
+
+.filter-brand-row{display:flex;flex-direction:column;justify-content:center;padding:12px 0;border-bottom:1px solid #00000014;text-align:left}
+
+.filter-brand-row h1{margin:0;font-family:Baskerville,"Iowan Old Style",Georgia,serif;font-size:22px;line-height:1.2;letter-spacing:.1px;font-weight:400;color:#171717}
+
+.landing-filter-row{display:flex;align-items:center;gap:24px;min-width:0;padding:12px 0}
+
+@media(max-width:600px){
+  .landing-filters{padding:0 16px;gap:0}
+
+  .filter-brand-row{padding:10px 0}
+
+  .filter-brand-row h1{font-size:20px;letter-spacing:0}
+
+  .landing-filter-row{gap:12px;padding:10px 0}
+
+}
+
+@media(max-width:360px){.filter-brand-row h1{font-size:18px;letter-spacing:-.1px}
+.explorer-toolbar .overview-button{font-size:9px;padding:7px 4px}
+}
+
+.placeholder-citation{margin:8px 0 0;font-size:10px;line-height:1.6;color:#525252;font-weight:400}
+
+@media(max-width:600px){.placeholder-citation{font-size:9px}
+}
+
+/* Resize existing markers smoothly without fading or replacing them. */
+.site-icon{transition:width .22s ease,height .22s ease,margin-left .22s ease,margin-top .22s ease}
+
+@media(prefers-reduced-motion:reduce){.site-icon{transition:none}
+}
+
+/* Keep sample hover cards within the visible map, including narrow viewports. */
+.sample-tooltip{white-space:normal;overflow-wrap:anywhere;overflow:hidden;max-width:280px}
+
+.sample-tooltip-shifted:before{display:none}
+
+/* Use the same compact typography and spacing as the left filter card. */
+.profile-panel{color:var(--ink);scrollbar-gutter:stable}
+
+.profile-panel .section-title{margin-bottom:16px;gap:6px}
+
+.profile-panel h2{font-size:14px;font-weight:650;line-height:1.35}
+
+.filters .panel-close,.profile-panel .panel-close{width:24px;height:24px;font-size:20px}
+
+.profile-panel .tabs,.comparison-tabs{padding:3px;gap:2px;background:#f4f4f4;border-radius:5px}
+
+.profile-panel .tabs button,.comparison-tabs button{font-size:10px;padding:7px 3px;color:var(--muted)}
+
+.profile-panel .tabs button.active,.comparison-tabs button.active{color:var(--ink);font-weight:600}
+
+.profile-panel .selected-title{margin-top:15px;flex-wrap:wrap;gap:6px}
+
+.profile-panel .badge{max-width:100%;white-space:normal;overflow-wrap:anywhere;display:inline-flex;align-items:center;gap:5px;font-size:9px;font-weight:500;padding:4px 5px;color:var(--ink);background:#fafafa;border:1px solid var(--line);border-radius:5px}
+
+.profile-panel .badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--biome-color);flex-shrink:0}
+
+.profile-panel #selected-id{font-size:14px;font-weight:600;letter-spacing:0;margin-top:10px;line-height:1.4}
+
+.profile-panel #selected-location{font-size:10px;line-height:1.5;margin:4px 0 12px;color:var(--muted)}
+
+.profile-panel .search-label{font-size:9px;margin-bottom:6px}
+
+.profile-panel #site-picker,.profile-panel input[type=search]{font-size:10px;padding:8px;background:#fafafa}
+
+.profile-panel .profile-metrics{margin:15px 0 12px;padding:12px 0;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+
+.profile-panel .profile-metrics>div+div{padding-left:12px}
+
+.profile-panel .profile-metrics strong{font-size:18px;font-weight:500;margin:5px 0 2px;overflow-wrap:anywhere}
+
+.profile-panel .profile-metrics span,.profile-panel .profile-metrics small{font-size:8px;color:var(--muted)}
+
+.profile-panel details{font-size:10px;margin-bottom:16px}
+
+.profile-panel dl{grid-template-columns:55px minmax(0,1fr)}
+
+.profile-panel .chart-controls{font-size:11px;margin-bottom:8px;gap:6px}
+
+.profile-panel .chart-controls .text-button{font-size:10px;font-weight:400}
+
+.profile-panel .plot-options{flex-wrap:wrap;margin-top:8px;gap:6px;color:var(--muted)}
+
+.profile-panel .fine{font-size:9px;line-height:1.5;color:var(--muted)}
+
+.profile-panel #chart-caption{margin:10px 0}
+
+.profile-panel .bar-row{margin:11px 0}
+
+.profile-panel .bar-label{font-size:9px;gap:8px}
+
+.profile-panel .bar-value{font-size:9px;color:var(--muted)}
+
+.profile-panel .bar-track{height:5px}
+
+@media(max-width:600px){.profile-panel .section-title{margin-bottom:12px}
+.profile-panel .profile-metrics>div+div{padding-left:8px}
+.profile-panel .chart-controls{font-size:10px;flex-wrap:wrap}
+.profile-panel .chart-controls .text-button{font-size:9px;white-space:nowrap}
+}
+
+/* One shared glass surface for front-page and explorer panels. */
+:root{--panel-background:rgba(255,255,255,.75);--panel-blur:3px;--panel-radius:10px}
+
+:is(.landing-filters,.filters,.profile-panel,.comparison-map-key,.sample-tooltip,.district-tooltip,.ranking-section,.overview-button,#map-empty){background:var(--panel-background);backdrop-filter:blur(var(--panel-blur));-webkit-backdrop-filter:blur(var(--panel-blur))}
+
+.filters,.profile-panel,.comparison-map-key,.sample-tooltip,.district-tooltip,#map-empty{border-radius:var(--panel-radius)}
+
+.sample-tooltip.leaflet-tooltip-top:before{border-top-color:var(--panel-background)}
+
+.sample-tooltip.leaflet-tooltip-bottom:before{border-bottom-color:var(--panel-background)}
+
+.sample-tooltip hr{border:0;border-top:1px solid var(--line);margin:10px 0}
+
+.district-tooltip{padding:10px 12px;font-size:11px;line-height:1.7;color:var(--ink);opacity:1}
+
+/* Touch taps can leave hover cards stuck after selection has been cleared. */
+@media(max-width:600px),(hover:none),(pointer:coarse){
+  .district-tooltip,.sample-tooltip{display:none}
+}
+
+.district-tooltip.leaflet-tooltip-left:before{border-left-color:var(--panel-background)}
+
+.district-tooltip.leaflet-tooltip-right:before{border-right-color:var(--panel-background)}
+
+.area-controls{border-top:1px solid var(--line);margin-top:17px;padding-top:14px}
+
+.area-controls h3{font-size:11px;margin:0 0 12px}
+
+#area-selection{display:block;width:100%;font-size:10px;padding:7px 6px;margin-top:10px}
+
+.filter-header-actions{display:flex;align-items:center;gap:2px}
+
+#comparison-search{margin-top:10px}
+
+/* Equal divider spacing throughout the compact filter panel. */
+.filters .section-title{margin-bottom:0}
+
+.filters :is(.biome-controls,.comparison-controls,.area-controls,.filter-summary){border-top:1px solid var(--line);margin-top:10px;padding-top:10px}
+
+.filters .filter-heading{margin:0 0 6px}
+
+.filters .filter-stats{padding-bottom:0}
+
+.filter-header-actions .panel-close{padding:0}
+
+.filter-header-actions svg{display:block;width:18px;height:18px;stroke-width:1.8}
+
+.filters .filter-heading{justify-content:space-between;min-height:17px;margin:0 0 8px}
+
+.filters .filter-section-title{margin:0;font-family:inherit;font-size:11px;font-weight:600;line-height:17px;letter-spacing:0;color:var(--ink)}
+
+.profile-panel.aggregate-profile .badge::before{display:none}
